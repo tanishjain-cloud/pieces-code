@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Amazing Facts</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    #fact-container {
+      width: 80%;
+      max-width: 600px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin-bottom: 20px;
+      opacity: 0; /* Hidden by default */
+      animation: fadeIn 1s ease-in-out forwards; /* Fade-in animation */
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Amazing Facts</h1>
+  <div id="fact-container">
+    <!-- Facts will be displayed here -->
+  </div>
+  <button id="load-fact">Load New Fact</button>
+
+  <script>
+    const facts = [
+      {
+        "id": 1,
+        "fact": "The Earth is approximately 4.54 billion years old."
+      },
+      {
+        "id": 2,
+        "fact": "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible."
+      },
+      {
+        "id": 3,
+        "fact": "Octopuses have three hearts."
+      },
+      {
+        "id": 4,
+        "fact": "The Eiffel Tower can be 15 cm taller during the summer due to thermal expansion."
+      },
+      {
+        "id": 5,
+        "fact": "A teaspoon of neutron star would weigh 6 billion tons."
+      },
+      {
+        "id": 6,
+        "fact": "Shakespeare invented over 1700 common words."
+      },
+      {
+        "id": 7,
+        "fact": "Bananas are berries, but strawberries aren't."
+      },
+      {
+        "id": 8,
+        "fact": "The shortest war in history was between Britain and Zanzibar in 1896. Zanzibar surrendered after 38 minutes."
+      },
+      {
+        "id": 9,
+        "fact": "There are more trees on Earth than stars in the Milky Way galaxy."
+      },
+      {
+        "id": 10,
+        "fact": "A group of flamingos is called a flamboyance."
+      }
+    ];
+
+    const factContainer = document.getElementById('fact-container');
+    const loadFactButton = document.getElementById('load-fact');
+
+    function displayFact() {
+      const randomIndex = Math.floor(Math.random() * facts.length);
+      factContainer.textContent = facts[randomIndex].fact;
+
+      // Reset animation
+      factContainer.style.animation = 'none';
+      factContainer.offsetHeight; /* trigger reflow */
+      factContainer.style.animation = null;
+
+      factContainer.classList.add('fadeIn');
+    }
+
+    loadFactButton.addEventListener('click', displayFact);
+
+    // Display initial fact on page load
+    displayFact();
+  </script>
+</body>
+</html>
